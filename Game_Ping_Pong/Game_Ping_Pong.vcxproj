@@ -124,7 +124,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
-    <ClInclude Include="graphics.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
   </ItemGroup>
@@ -133,9 +132,6 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="test.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="graphics.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
