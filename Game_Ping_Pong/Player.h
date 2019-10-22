@@ -14,15 +14,16 @@ class Player
 {
 protected:
 	int x, y;//position
-	int height = 60, width = 20;//size of player
+	static int height, width;//size of player
 	int score = 0;
-	int boardDistance = 10;//it is a distance from edge of board to player
+	static int boardDistance;//it is a distance from edge of board to player
 	int speed = 10;//how fast player move
 	//avoid player to move out of range
 	int limitTop;//restricted top
 	int limitBottom;//restricted bottom
 public:
 	Player(int x, int y);
+	Player() {};
 	int getX() {
 		return x;
 	}
@@ -36,9 +37,6 @@ public:
 		score++;
 	}
 
-	Player() {
-	}
-
 	void drawPlayer(int x, int y);
 	//decrement position
 	void moveUp() {
@@ -48,6 +46,8 @@ public:
 	void moveDown() {
 		y += speed;
 	}
+
+	friend class Ball;
 };
 
 //Class Player1 and Class Player 2 is inheritances from Class Player
@@ -55,7 +55,7 @@ public:
 
 class Player1 :public Player {
 public:
-	Player1(Point p, int h_);
+	Player1(Point p, int h);
 	void moveUP() {
 		if (y - speed >= limitTop)
 			Player::moveUp();
@@ -77,7 +77,7 @@ public:
 
 class Player2 : public Player {
 public:
-	Player2(Point p, int h_);
+	Player2(Point p, int h);
 	void moveUP() {
 		if (y - speed >= limitTop)
 			Player::moveUp();

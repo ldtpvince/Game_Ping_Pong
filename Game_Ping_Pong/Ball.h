@@ -18,8 +18,7 @@ public:
 	void drawBall();
 	void move();
 
-	bool isCollideBoard();
-	bool isCollidePlayer();
+	bool hasCollision(Board board);
 	void collisionBoard();
 	void collisionPlayer();
 };

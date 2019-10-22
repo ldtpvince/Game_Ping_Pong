@@ -10,6 +10,9 @@
 #pragma comment(lib, "graphics.lib")
 using namespace std;
 
+const int defaultHeight = 480;
+const int defaultWidth = 640;
+
 class Board
 {
 	int height;
@@ -19,7 +22,7 @@ class Board
 
 	const int thick = 10;
 public:
-	Board(int h, int w);
+	Board(int w, int h);
 	Board();
 	int getHeight() {
 		return height;
