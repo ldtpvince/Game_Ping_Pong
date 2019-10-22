@@ -4,6 +4,7 @@
 #include <vector>
 #include "Board.h"
 #include "Player.h"
+#include "Ball.h"
 #include <Windows.h>
 #pragma comment(lib, "graphics.lib")
 using namespace std;
@@ -19,11 +20,13 @@ int main() {
 	int h = getwindowheight();
 
 	Board board(540, 380);
+
 	Player1 p1(board.getPoint1(), board.getWidth());
 	Player2 p2(board.getPoint2(), board.getWidth());
+	
+	Ball ball(board);
 
 	while (1) {
-
 		board.drawBoard();
 
 		if (GetAsyncKeyState(0x57)) p1.moveUP();
@@ -35,6 +38,8 @@ int main() {
 		p2.draw();
 
 		delay(50);
+
+		ball.drawBall();
 
 		if (GetAsyncKeyState(VK_ESCAPE)) break;
 	}

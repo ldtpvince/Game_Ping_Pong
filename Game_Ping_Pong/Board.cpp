@@ -7,6 +7,7 @@ Board::Board(int h, int w) {
 	//draw color background
 	setcolor(GREEN);
 	setfillstyle(1, GREEN);
+
 	int left = (640 - height) / 2 - 5;
 	int	top = (480 - width) / 2 + 10;
 	int right = left + height, bottom = top + width;
