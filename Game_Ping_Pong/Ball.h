@@ -2,6 +2,7 @@
 #include "Point.h"
 #include "Vector.h"
 #include "Board.h"
+#include "Player.h"
 
 class Ball
 {
@@ -10,16 +11,21 @@ private:
 	Vector vec;
 	int speed;
 	const int radius = 15;
+	int limitTop;
+	int limitBottom;
+	int limitLeft;
+	int limitRight;
 public:
 	Point position;
 
-	Ball(Board board);
+	Ball(Board board, Player1 player1, Player2 player2);
 
 	void drawBall();
 	void move();
 
-	bool hasCollision(Board board);
+	int hasCollision(Board board, Player1 player1, Player2 player2);
 	void collisionBoard();
 	void collisionPlayer();
+	void resetState(Board board, Player1 player1, Player2 player2);
 };
 

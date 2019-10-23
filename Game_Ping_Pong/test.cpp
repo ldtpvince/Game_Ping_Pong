@@ -5,6 +5,7 @@
 #include "Board.h"
 #include "Player.h"
 #include "Ball.h"
+#include "Random.h"
 #include <Windows.h>
 #pragma comment(lib, "graphics.lib")
 using namespace std;
@@ -20,16 +21,16 @@ int main() {
 	int h = getwindowheight();
 
 	Board board(380, 540);
-	Ball ball(board);
 
 	Player1 p1(board.getPoint1(), board.getHeight());
 	Player2 p2(board.getPoint2(), board.getHeight());
 
+	Ball ball(board, p1, p2);
 
 	while (1) {
 		board.drawBoard();
 		ball.drawBall();
-		//ball.move();
+		ball.move();
 
 		if (GetAsyncKeyState(0x57)) p1.moveUP();
 		if (GetAsyncKeyState(0x53)) p1.moveDown();
@@ -39,10 +40,14 @@ int main() {
 		if (GetAsyncKeyState(VK_DOWN)) p2.moveDown();
 		p2.draw();
 
+		ball.hasCollision(board, p1, p2);
+
 		delay(50);
 
 		if (GetAsyncKeyState(VK_ESCAPE)) break;
 	}
-	getch();
+	cin.ignore();
 	closegraph();
+	Random* r = Random::getInstance();
+	delete r;
 }

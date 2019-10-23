@@ -1,13 +1,13 @@
 #include "Player.h"
 
+int Player::height = 60;
+int Player::width = 20;
+int Player::boardDistance = 10;
+
 //constructor class Player
 Player::Player(int x, int y) {
 	drawPlayer(x, y);
 }
-
-int Player::height = 60;
-int Player::width = 20;
-int Player::boardDistance = 10;
 
 //draw player
 void Player::drawPlayer(int x, int y) {
