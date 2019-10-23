@@ -9,6 +9,8 @@
 #pragma comment(lib, "graphics.lib")
 using namespace std;
 
+// test
+
 void test(char c) {
 	cout << c << endl;
 }
