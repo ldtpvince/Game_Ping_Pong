@@ -1,11 +1,11 @@
 #include "Board.h"
 
 //constructor
-Board::Board(int h, int w) {
+Board::Board(int w, int h) {
 	height = h;
 	width = w;
-	int top = (defaultHeight - height) / 2 - 5;
-	int	left = (defaultWidth - width) / 2 + 10;
+	int top = (defaultHeight - height) / 2;
+	int	left = (defaultWidth - width) / 2 ;
 	int right = left + width, bottom = top + height;
 
 	/*//draw color background
@@ -36,8 +36,8 @@ Board::Board(int h, int w) {
 void Board::drawBoard() {
 	setcolor(GREEN);
 	setfillstyle(1, GREEN);
-	int top = (defaultHeight - height) / 2 - 5;
-	int	left = (defaultWidth - width) / 2 + 10;
+	int top = (defaultHeight - height) / 2 ;
+	int	left = (defaultWidth - width) / 2 ;
 	int right = left + width, bottom = top + height;
 	bar(left, top, right, bottom);
 

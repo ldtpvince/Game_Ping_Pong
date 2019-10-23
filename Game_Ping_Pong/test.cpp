@@ -19,17 +19,17 @@ int main() {
 	int w = getwindowwidth();
 	int h = getwindowheight();
 
-	Board board(380, 540);
+	Board board(600, 400);
 	Ball ball(board);
 
 	Player1 p1(board.getPoint1(), board.getHeight());
 	Player2 p2(board.getPoint2(), board.getHeight());
 
 
-	while (1) {
+
 		board.drawBoard();
 		ball.drawBall();
-		//ball.move();
+		ball.move();
 
 		if (GetAsyncKeyState(0x57)) p1.moveUP();
 		if (GetAsyncKeyState(0x53)) p1.moveDown();
@@ -39,10 +39,10 @@ int main() {
 		if (GetAsyncKeyState(VK_DOWN)) p2.moveDown();
 		p2.draw();
 
+
 		delay(50);
 
-		if (GetAsyncKeyState(VK_ESCAPE)) break;
-	}
+		//if (GetAsyncKeyState(VK_ESCAPE)) break;
 	getch();
 	closegraph();
 }
