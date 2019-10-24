@@ -61,7 +61,7 @@ void Ball::move() {
 // input: board, player1, player2
 // output: 1 if collision with player, 2 if collision with board, 0 if no collision
 int Ball::hasCollision(Board board, Player1 player1, Player2 player2) {
-	if ((position.x - limitLeft) <= 1) {
+	if ((position.x - limitLeft) <= 3) {
 		int heightPlayerInterval = player1.getY() + Player::height;
 		if (position.y >= player1.getY() && position.y <= heightPlayerInterval) {
 			this->collisionPlayer();
@@ -74,7 +74,7 @@ int Ball::hasCollision(Board board, Player1 player1, Player2 player2) {
 		}
 	}
 
-	if ((position.x - limitRight) >= -1) {
+	if ((position.x - limitRight) >= -3) {
 		int heightPlayerInterval = player2.getY() + Player::height;
 		if (position.y >= player2.getY() && position.y <= heightPlayerInterval) {
 			this->collisionPlayer();
@@ -148,5 +148,5 @@ void Ball::resetState(Board board, Player1 player1, Player2 player2) {
 	}
 
 	speed = 10;
-
+	cleardevice();
 }
