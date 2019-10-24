@@ -46,8 +46,6 @@ public:
 	void moveDown() {
 		y += speed;
 	}
-
-	friend class Ball;
 };
 
 //Class Player1 and Class Player 2 is inheritances from Class Player
@@ -73,6 +71,8 @@ public:
 	void draw() {
 		Player::drawPlayer(x, y);
 	}
+
+	friend class Ball;
 };
 
 class Player2 : public Player {
@@ -95,4 +95,6 @@ public:
 	void draw() {
 		Player::drawPlayer(x, y);
 	}
+
+	friend class Ball;
 };

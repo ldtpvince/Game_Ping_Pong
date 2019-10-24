@@ -1,4 +1,5 @@
 #include "Random.h"
+#include <time.h>
 
 Random* Random::instance = NULL;
 
@@ -18,5 +19,5 @@ Random* Random::getInstance() {
 }
 
 int Random::getRandomVal(int min, int max) {
-	return rand() % (max - min + 1);
+	return rand() % (max - min + 1) + min;
 }

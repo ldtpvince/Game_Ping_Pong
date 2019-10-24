@@ -8,8 +8,9 @@ private:
 	static Random* instance;
 	
 	Random();
-	~Random();
 public:
+	~Random();
+
 	static Random* getInstance();
 	int getRandomVal(int min, int max);
 };
