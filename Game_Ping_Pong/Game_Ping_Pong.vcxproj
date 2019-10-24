@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="gameWindow.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Random.h" />
@@ -133,6 +134,7 @@
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="gameWindow.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="test.cpp" />

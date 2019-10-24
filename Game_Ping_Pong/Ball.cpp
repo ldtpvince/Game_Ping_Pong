@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "graphics.h"
 
-Ball::Ball(Board board, Player1 player1, Player2 player2) {
+Ball::Ball(Board& board, Player1& player1, Player2& player2) {
 	Random* r = Random::getInstance();
 	
 	// fix position in the future
@@ -60,7 +60,9 @@ void Ball::move() {
 
 // input: board, player1, player2
 // output: 1 if collision with player, 2 if collision with board, 0 if no collision
-int Ball::hasCollision(Board board, Player1 player1, Player2 player2) {
+int Ball::hasCollision(const Board& board, Player1& player1, Player2& player2) {
+	// heightPlayerInerval is an interval between the coordination of the top to the bottom of the player
+	// if position.x of the ball to the limit edge is smaller than 3 pixel than bounce the ball back
 	if ((position.x - limitLeft) <= 3) {
 		int heightPlayerInterval = player1.getY() + Player::height;
 		if (position.y >= player1.getY() && position.y <= heightPlayerInterval) {
@@ -70,7 +72,7 @@ int Ball::hasCollision(Board board, Player1 player1, Player2 player2) {
 		}
 		else {
 			player2.setScore();
-			this->resetState(board, player1, player2);
+			this->resetState(board);
 		}
 	}
 
@@ -83,15 +85,15 @@ int Ball::hasCollision(Board board, Player1 player1, Player2 player2) {
 		}
 		else {
 			player1.setScore();
-			this->resetState(board, player1, player2);
+			this->resetState(board);
 		}
 	}
 
-	if ((position.y - limitTop) <= 5) {
+	if ((position.y - limitTop) <= 2) {
 		this->collisionBoard();
 		return 2;
 	}
-	if ((position.y - limitBottom) >= -5) {
+	if ((position.y - limitBottom) >= -2) {
 		this->collisionBoard();
 		return 2;
 	}
@@ -122,7 +124,7 @@ void Ball::collisionPlayer() {
 
 }
 
-void Ball::resetState(Board board, Player1 player1, Player2 player2) {
+void Ball::resetState(const Board& board) {
 	Random* r = Random::getInstance();
 	
 	// fix position in the future
@@ -148,5 +150,4 @@ void Ball::resetState(Board board, Player1 player1, Player2 player2) {
 	}
 
 	speed = 10;
-	cleardevice();
 }

@@ -1,6 +1,6 @@
 #include "Player.h"
 
-int Player::height = 60;
+int Player::height = 80;
 int Player::width = 20;
 int Player::boardDistance = 10;
 
@@ -22,7 +22,11 @@ void Player::drawPlayer(int x, int y) {
 }
 
 //constructor class Player1
-Player1::Player1(Point p, int h) {
+Player1::Player1(Board& board) {
+	this->score = 0;
+
+	Point p = board.getPoint1();
+	int h = board.getHeight();
 	//set position
 	x = p.x + boardDistance;
 	y = p.y + (h - height) / 2;
@@ -35,7 +39,12 @@ Player1::Player1(Point p, int h) {
 
 //constructor class Player2
 //it is the same as constructor Player1
-Player2::Player2(Point p, int h) {
+Player2::Player2(Board& board) {
+	this->score = 0;
+
+	Point p = board.getPoint2();
+	int h = board.getHeight();
+	//set position
 	x = p.x - boardDistance - width;
 	y = p.y + (h - height) / 2;
 	limitTop = p.y;

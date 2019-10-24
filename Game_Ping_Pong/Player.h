@@ -15,7 +15,7 @@ class Player
 protected:
 	int x, y;//position
 	static int height, width;//size of player
-	int score = 0;
+	int score;
 	static int boardDistance;//it is a distance from edge of board to player
 	int speed = 10;//how fast player move
 	//avoid player to move out of range
@@ -34,7 +34,7 @@ public:
 		return score;
 	}
 	void setScore() {
-		score++;
+		score = score + 1;
 	}
 
 	void drawPlayer(int x, int y);
@@ -53,7 +53,7 @@ public:
 
 class Player1 :public Player {
 public:
-	Player1(Point p, int h);
+	Player1(Board& board);
 	void moveUP() {
 		if (y - speed >= limitTop)
 			Player::moveUp();
@@ -77,7 +77,7 @@ public:
 
 class Player2 : public Player {
 public:
-	Player2(Point p, int h);
+	Player2(Board& board);
 	void moveUP() {
 		if (y - speed >= limitTop)
 			Player::moveUp();
@@ -90,7 +90,7 @@ public:
 		return Player::getScore();
 	}
 	void setScore() {
-		return Player::setScore();
+		Player::setScore();
 	}
 	void draw() {
 		Player::drawPlayer(x, y);

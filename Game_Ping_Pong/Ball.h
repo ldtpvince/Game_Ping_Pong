@@ -18,14 +18,14 @@ private:
 public:
 	Point position;
 
-	Ball(Board board, Player1 player1, Player2 player2);
+	Ball(Board& board, Player1& player1, Player2& player2);
 
 	void drawBall();
 	void move();
 
-	int hasCollision(Board board, Player1 player1, Player2 player2);
+	int hasCollision(const Board& board, Player1& player1, Player2& player2);
 	void collisionBoard();
 	void collisionPlayer();
-	void resetState(Board board, Player1 player1, Player2 player2);
+	void resetState(const Board& board);
 };
 
