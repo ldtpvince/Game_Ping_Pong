@@ -10,6 +10,8 @@
 #pragma comment(lib, "graphics.lib")
 using namespace std;
 
+// test
+
 void test(char c) {
 	cout << c << endl;
 }
@@ -20,7 +22,11 @@ int main() {
 	int w = getwindowwidth();
 	int h = getwindowheight();
 
-	Board board(380, 540);
+	//<<<<<<< HEAD
+	//	Board board(380, 540);
+	//=======
+	Board board(600, 400);
+	// >>>>>>> 32e6bcdda1bdaf26872d37d94b6b58ecc0c67302
 
 	Player1 p1(board.getPoint1(), board.getHeight());
 	Player2 p2(board.getPoint2(), board.getHeight());
@@ -40,12 +46,14 @@ int main() {
 		if (GetAsyncKeyState(VK_DOWN)) p2.moveDown();
 		p2.draw();
 
+		if (GetAsyncKeyState(VK_ESCAPE)) break;
+
 		ball.hasCollision(board, p1, p2);
 
-		delay(50);
+		delay(75);
 
-		if (GetAsyncKeyState(VK_ESCAPE)) break;
 	}
+
 	cin.ignore();
 	closegraph();
 	Random* r = Random::getInstance();

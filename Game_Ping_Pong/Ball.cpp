@@ -7,8 +7,8 @@ Ball::Ball(Board board, Player1 player1, Player2 player2) {
 	Random* r = Random::getInstance();
 	
 	// fix position in the future
-	position.x = defaultWidth/2 + 10;
-	position.y = defaultHeight/2 - 5;
+	position.x = defaultWidth/2 ;
+	position.y = defaultHeight/2 ;
 	
 	// 0 for negative vec.x, 1 for positive vec.x
 	// 0 for negative vec.y, 1 for positive vec.y
@@ -46,9 +46,11 @@ Ball::Ball(Board board, Player1 player1, Player2 player2) {
 
 void Ball::drawBall() {
 	// set ball color
+	setcolor(WHITE);
 	setfillstyle(SOLID_FILL, WHITE);
 	// draw shape
-	circle(position.x, position.y, radius);
+	//circle(position.x, position.y, radius);
+	pieslice(position.x, position.y, 0, 360, radius);
 }
 
 void Ball::move() {
