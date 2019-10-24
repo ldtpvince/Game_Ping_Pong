@@ -10,8 +10,8 @@
 #pragma comment(lib, "graphics.lib")
 using namespace std;
 
-const int defaultHeight = 480;
-const int defaultWidth = 640;
+const int defaultHeight = 600;
+const int defaultWidth = 900;
 
 class Board
 {
