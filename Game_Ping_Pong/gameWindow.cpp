@@ -1,7 +1,7 @@
 #include "gameWindow.h"
 #include <thread>
 
-gameWindow::gameWindow() :board(600, 400), ball(board, player1, player2), player1(board), player2(board) {}
+gameWindow::gameWindow() :board(600, 400), ball(board, player1, player2), player1(board), player2(board), exitFlag(false) {}
 
 // test using thread => doesnt work
 //void gameWindow::testPlayer1() {
@@ -61,10 +61,11 @@ void gameWindow::runGame() {
 
 		delay(50);
 
-		if (GetAsyncKeyState(VK_ESCAPE)) break; // press key "Esc' to exit game
-
+		if (GetAsyncKeyState(VK_ESCAPE)) {
+			// press key "Esc' to exit game
+			return;
+		}
 	}
-
 }
 
 void gameWindow::drawScorePlayer1() {
@@ -127,6 +128,7 @@ void gameWindow::drawInstruction() {
 	char InPlayer1[] = "Player 1: W - S";
 	char InPlayer2[] = "Player 2: UP - DOWN";
 	char InPlay[] = "Press P to Pause - Press R to Resume";
+	char InPlay2[] = "Press Escape to exit the game";
 	//set position of text
 	int x = (defaultWidth - textwidth(InPlay)) / 2;
 	int height_text = textheight(InPlayer1);
@@ -135,7 +137,7 @@ void gameWindow::drawInstruction() {
 	outtextxy(x, y, InPlayer1);
 	outtextxy(x, y + height_text, InPlayer2);
 	outtextxy(x, y + 2 * height_text, InPlay);
-
+	outtextxy(x, y + 3 * height_text, InPlay2);
 }
 //draw title of game
 void gameWindow::drawTitle() {

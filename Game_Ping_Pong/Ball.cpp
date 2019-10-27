@@ -55,10 +55,10 @@ void Ball::drawBall() {
 }
 
 void Ball::move() {
-	if (position.x < 0) {
+	if (position.x > 0) {
 		position.x += (int)ceil(vec.x * speed);
 	}
-	else if (position.x > 0) {
+	else if (position.x < 0) {
 		position.x += (int)floor(vec.x * speed);
 	}
 
@@ -105,11 +105,11 @@ int Ball::hasCollision(const Board& board, Player1& player1, Player2& player2) {
 		}
 	}
 
-	if ((position.y - limitTop) <= 10) {
+	if ((position.y - limitTop) <= 5) {
 		this->collisionBoard();
 		return 2;
 	}
-	if ((position.y - limitBottom) >= -10) {
+	if ((position.y - limitBottom) >= -5) {
 		this->collisionBoard();
 		return 2;
 	}
@@ -118,6 +118,13 @@ int Ball::hasCollision(const Board& board, Player1& player1, Player2& player2) {
 }
 
 void Ball::collisionBoard() {
+	if (vec.y > 0) {
+		this->position.y -= 2;
+	}
+	else if (vec.y < 0) {
+		this->position.y += 2;
+	}
+
 	vec.y = -vec.y;
 }
 
@@ -126,18 +133,21 @@ void Ball::collisionPlayer() {
 	
 	if (vec.x > 0) {
 		vec.x = -(r->getRandomVal(5, 9) / 10.0);
+		this->position.x -= 2;
 	}
 	else if (vec.x < 0) {
 		vec.x = (r->getRandomVal(5, 9) / 10.0);
+		this->position.x += 2;
 	}
 
 	if (vec.y < 0) {
 		vec.y = -sqrt(1 - vec.x * vec.x);
+		this->position.y += 2;
 	}
 	else if (vec.y > 0) {
 		vec.y = sqrt(1 - vec.x * vec.x);
+		this->position.y -= 2;
 	}
-
 }
 
 void Ball::resetState(const Board& board) {
