@@ -2,6 +2,7 @@
 #include "Random.h"
 #include "Player.h"
 #include "graphics.h"
+#include <fstream>
 
 Ball::Ball(Board& board, Player1& player1, Player2& player2) {
 	Random* r = Random::getInstance();
@@ -31,17 +32,17 @@ Ball::Ball(Board& board, Player1& player1, Player2& player2) {
 	speed = 10;
 
 	// anchor point for the board
-	Point anchorPointLeft(player1.getX(), player1.limitTop);
-	Point anchorPointRight(player2.getX(), player2.limitBottom);
+	Point anchorPointTopLeft(player1.getX(), player1.limitTop);
+	Point anchorPointBottomRight(player2.getX(), player2.limitBottom);
 	int boardHeight = board.getHeight();
 	int boardWidth = board.getWidth();
 
 	// calculate limit position for the ball 
 	// count from the center of the ball
-	limitTop = anchorPointLeft.y + radius;
-	limitBottom = anchorPointLeft.y + boardHeight - radius;
-	limitLeft = anchorPointLeft.x + Player::width + radius;
-	limitRight = anchorPointRight.x - radius;
+	limitTop = anchorPointTopLeft.y + radius;
+	limitBottom = anchorPointTopLeft.y + boardHeight- radius;
+	limitLeft = anchorPointTopLeft.x + Player::width + radius;
+	limitRight = anchorPointBottomRight.x - radius;
 }
 
 void Ball::drawBall() {
@@ -54,8 +55,19 @@ void Ball::drawBall() {
 }
 
 void Ball::move() {
-	position.x += (int)floor(vec.x * speed);
-	position.y += (int)floor(vec.y * speed);
+	if (position.x > 0) {
+		position.x += (int)ceil(vec.x * speed);
+	}
+	else if (position.x < 0) {
+		position.x += (int)floor(vec.x * speed);
+	}
+
+	if (position.y > 0) {
+		position.y += (int)ceil(vec.y * speed);
+	}
+	else if (position.y < 0) {
+		position.y += (int)floor(vec.y * speed);
+	}
 }
 
 // input: board, player1, player2
@@ -63,7 +75,9 @@ void Ball::move() {
 int Ball::hasCollision(const Board& board, Player1& player1, Player2& player2) {
 	// heightPlayerInerval is an interval between the coordination of the top to the bottom of the player
 	// if position.x of the ball to the limit edge is smaller than 3 pixel than bounce the ball back
-	if ((position.x - limitLeft) <= 3) {
+	int compareParamForBallX = (int)floor(vec.x * speed);
+	int compareParamForBallY = (int)floor(vec.y * speed);
+	if ((position.x - limitLeft) <= 1) {
 		int heightPlayerInterval = player1.getY() + Player::height;
 		if (position.y >= player1.getY() && position.y <= heightPlayerInterval) {
 			this->collisionPlayer();
@@ -73,10 +87,11 @@ int Ball::hasCollision(const Board& board, Player1& player1, Player2& player2) {
 		else {
 			player2.setScore();
 			this->resetState(board);
+			return 1;
 		}
 	}
 
-	if ((position.x - limitRight) >= -3) {
+	if ((position.x - limitRight) >= -1) {
 		int heightPlayerInterval = player2.getY() + Player::height;
 		if (position.y >= player2.getY() && position.y <= heightPlayerInterval) {
 			this->collisionPlayer();
@@ -86,14 +101,15 @@ int Ball::hasCollision(const Board& board, Player1& player1, Player2& player2) {
 		else {
 			player1.setScore();
 			this->resetState(board);
+			return 1;
 		}
 	}
 
-	if ((position.y - limitTop) <= 2) {
+	if ((position.y - limitTop) <= 5) {
 		this->collisionBoard();
 		return 2;
 	}
-	if ((position.y - limitBottom) >= -2) {
+	if ((position.y - limitBottom) >= -5) {
 		this->collisionBoard();
 		return 2;
 	}
@@ -102,6 +118,13 @@ int Ball::hasCollision(const Board& board, Player1& player1, Player2& player2) {
 }
 
 void Ball::collisionBoard() {
+	if (vec.y > 0) {
+		this->position.y -= 2;
+	}
+	else if (vec.y < 0) {
+		this->position.y += 2;
+	}
+
 	vec.y = -vec.y;
 }
 
@@ -110,18 +133,21 @@ void Ball::collisionPlayer() {
 	
 	if (vec.x > 0) {
 		vec.x = -(r->getRandomVal(5, 9) / 10.0);
+		this->position.x -= 2;
 	}
 	else if (vec.x < 0) {
 		vec.x = (r->getRandomVal(5, 9) / 10.0);
+		this->position.x += 2;
 	}
 
 	if (vec.y < 0) {
 		vec.y = -sqrt(1 - vec.x * vec.x);
+		this->position.y += 2;
 	}
 	else if (vec.y > 0) {
 		vec.y = sqrt(1 - vec.x * vec.x);
+		this->position.y -= 2;
 	}
-
 }
 
 void Ball::resetState(const Board& board) {
