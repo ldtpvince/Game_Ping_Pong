@@ -1,4 +1,1 @@
-﻿  Ball.cpp
-D:\Users\Documents\GitHub\Game_Ping_Pong\Game_Ping_Pong\Ball.cpp(70,18): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Users\Documents\GitHub\Game_Ping_Pong\Game_Ping_Pong\Ball.cpp(83,18): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Game_Ping_Pong.vcxproj -> D:\Users\Documents\GitHub\Game_Ping_Pong\Debug\Game_Ping_Pong.exe
+﻿  Game_Ping_Pong.vcxproj -> C:\Users\Sy Pham\Documents\GitHub\New folder\Game_Ping_Pong\Debug\Game_Ping_Pong.exe
