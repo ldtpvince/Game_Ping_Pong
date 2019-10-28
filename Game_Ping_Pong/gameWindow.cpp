@@ -1,8 +1,24 @@
 #include "gameWindow.h"
+#include <thread>
 
-gameWindow::gameWindow() :board(600, 400), ball(board, player1, player2), player1(board), player2(board) {}
+gameWindow::gameWindow() :board(600, 400), ball(board, player1, player2), player1(board), player2(board), exitFlag(false) {}
+
+// test using thread => doesnt work
+//void gameWindow::testPlayer1() {
+//	if (GetAsyncKeyState(0x57)) player1.moveUP();//if discover key 'w' pressed , player1 will move up
+//	if (GetAsyncKeyState(0x53)) player1.moveDown();//if discover key 's' pressed , player1 will move down
+//}
+//
+//void gameWindow::testPlayer2() {
+//	if (GetAsyncKeyState(VK_UP)) player2.moveUP();//if discover key UP pressed , player2 will move up
+//	if (GetAsyncKeyState(VK_DOWN)) player2.moveDown();//if discover key DOWN pressed , player2 will move down
+//}
 
 void gameWindow::runGame() {
+	/*thread test1(&gameWindow::testPlayer1, this);
+	thread test2(&gameWindow::testPlayer2, this);
+	test1.join();
+	test2.join();*/
 
 	drawTitle();//draw title
 	drawInstruction();//draw instruction
@@ -13,8 +29,8 @@ void gameWindow::runGame() {
 		drawScorePlayer1();//draw player1
 		drawScorePlayer2();//draw player2
 
-		ball.drawBall();//draw ball
 		ball.move();
+		ball.drawBall();//draw ball
 
 		if (GetAsyncKeyState(0x57)) player1.moveUP();//if discover key 'w' pressed , player1 will move up
 		if (GetAsyncKeyState(0x53)) player1.moveDown();//if discover key 's' pressed , player1 will move down
@@ -35,7 +51,6 @@ void gameWindow::runGame() {
 
 		}
 
-
 		int Winner = winner();//find whether there is winner
 		if (Winner) {// Find winner
 			drawResult(Winner);//draw result
@@ -46,8 +61,10 @@ void gameWindow::runGame() {
 
 		delay(50);
 
-		if (GetAsyncKeyState(VK_ESCAPE)) break; // press key "Esc' to exit game
-
+		if (GetAsyncKeyState(VK_ESCAPE)) {
+			// press key "Esc' to exit game
+			return;
+		}
 	}
 }
 
@@ -111,6 +128,7 @@ void gameWindow::drawInstruction() {
 	char InPlayer1[] = "Player 1: W - S";
 	char InPlayer2[] = "Player 2: UP - DOWN";
 	char InPlay[] = "Press P to Pause - Press R to Resume";
+	char InPlay2[] = "Press Escape to exit the game";
 	//set position of text
 	int x = (defaultWidth - textwidth(InPlay)) / 2;
 	int height_text = textheight(InPlayer1);
@@ -119,7 +137,7 @@ void gameWindow::drawInstruction() {
 	outtextxy(x, y, InPlayer1);
 	outtextxy(x, y + height_text, InPlayer2);
 	outtextxy(x, y + 2 * height_text, InPlay);
-
+	outtextxy(x, y + 3 * height_text, InPlay2);
 }
 //draw title of game
 void gameWindow::drawTitle() {

@@ -11,11 +11,6 @@
 #pragma comment(lib, "graphics.lib")
 using namespace std;
 
-// test
-
-void test(char c) {
-	cout << c << endl;
-}
 int main() {
 	int gd = DETECT, gm;
 	char nameGame[] = "Game Ping Pong";
@@ -24,8 +19,6 @@ int main() {
 	gameWindow game;
 	game.runGame();
 
-	cin.ignore();
 	closegraph();
-	Random* r = Random::getInstance();
-	delete r;
+	return 0;
 }

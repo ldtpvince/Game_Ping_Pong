@@ -13,6 +13,7 @@ class gameWindow
 	Player2 player2;
 	Ball ball;
 	const int scoreWiner = 5;//Score of Winner
+	bool exitFlag;
 public:
 	gameWindow();
 	void runGame();
@@ -23,6 +24,10 @@ public:
 	void pauseGame();
 	int winner();
 	void drawResult(int);
+
+	// test using thread
+	/*void testPlayer1();
+	void testPlayer2();*/
 };
 
 
