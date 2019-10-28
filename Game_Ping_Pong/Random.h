@@ -6,7 +6,6 @@ class Random
 {
 private:
 	static Random* instance;
-	
 	Random();
 public:
 	~Random();
