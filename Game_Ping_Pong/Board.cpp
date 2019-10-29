@@ -1,6 +1,6 @@
 #include "Board.h"
 
-//constructor
+// construct
 Board::Board(int w, int h) {
 	height = h;
 	width = w;
@@ -8,31 +8,14 @@ Board::Board(int w, int h) {
 	int	left = (defaultWidth - width) / 2 ;
 	int right = left + width, bottom = top + height;
 
-	/*//draw color background
-	setcolor(GREEN);
-	setfillstyle(1, GREEN);
-
-	bar(left, top, right, bottom);
-
-	//draw white lines
-	setcolor(WHITE);
-	setlinestyle(1, 0, 1);
-	line(left + height / 2, top, left + height / 2, bottom);
-	circle(left + height / 2, top + width / 2, width / 4);
-
-	// draw walls 
-	setcolor(BROWN);
-	setfillstyle(1, BROWN);
-	bar(left, top - thick, right, top);
-	bar(left, bottom, right, bottom + thick);*/
-
-	//2 important position support class Player
+	//2 anchor position support class Player
 	p1 = Point(left, top);
 	p2 = Point(right, top);
 }
 
-//draw ball 
-//it is the same as function constructor
+// input: void
+// output: void
+// usage: draw Board on the screen
 void Board::drawBoard() {
 	setcolor(GREEN);
 	setfillstyle(1, GREEN);

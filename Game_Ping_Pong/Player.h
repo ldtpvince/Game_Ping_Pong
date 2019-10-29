@@ -15,7 +15,7 @@ class Player
 protected:
 	int x, y;//position
 	static int height, width;//size of player
-	int score = 0;
+	int score = 0;// score of the player
 	static int boardDistance;//it is a distance from edge of board to player
 	int speed = 15;//how fast player move
 	//avoid player to move out of range
