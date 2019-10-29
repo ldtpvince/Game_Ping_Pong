@@ -17,10 +17,10 @@ class Board
 {
 	int height;
 	int width;
-	Point p1;
-	Point p2;
+	Point p1;//anchor left
+	Point p2;//anchor right
 
-	const int thick = 10;
+	const int thick = 10;//thick of board to decorate
 public:
 	Board(int w, int h);
 	Board();
