@@ -12,13 +12,12 @@
 using namespace std;
 
 int main() {
-	int gd = DETECT, gm;
 	char nameGame[] = "Game Ping Pong";
-	initwindow(900, 600, nameGame);
+	initwindow(defaultWidth, defaultHeight, nameGame);
 
 	gameWindow game;
 	game.runGame();
 
-	closegraph();
+
 	return 0;
 }
