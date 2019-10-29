@@ -9,7 +9,7 @@ Board::Board(int w, int h) {
 	int	left = (defaultWidth - width) / 2 ;
 	int right = left + width, bottom = top + height;
 
-	//2 important position support class Player
+	//2 anchor position support class Player
 	p1 = Point(left, top);
 	p2 = Point(right, top);
 }

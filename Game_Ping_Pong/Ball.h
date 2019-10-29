@@ -7,16 +7,15 @@
 class Ball
 {
 private:
-	// vec length == 1
-	Vector vec;
-	int speed;
-	const int radius = 15;
-	int limitTop;
-	int limitBottom;
-	int limitLeft;
-	int limitRight;
+	Vector vec; // a vector with length 1 that guide the direction of the Ball
+	int speed; // the moving speed of the Ball
+	const int radius = 15; // the radius of the Ball
+	int limitTop; // the top edge of the Board that the Ball cant pass
+	int limitBottom; // the bottom edge of the Board that the Ball cant pass
+	int limitLeft; // the left edge of the Board that the Ball cant pass
+	int limitRight; // the right edge of the BOard that the Ball cant pass
 public:
-	Point position;
+	Point position; // position of the Ball on the screen
 
 	Ball(Board& board, Player1& player1, Player2& player2);
 

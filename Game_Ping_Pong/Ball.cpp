@@ -4,6 +4,9 @@
 #include "graphics.h"
 #include <fstream>
 
+// input: Board&, Player1&, Player2&
+// output: a Ball obj
+// usage: construct Ball obj
 Ball::Ball(Board& board, Player1& player1, Player2& player2) {
 	Random* r = Random::getInstance();
 	
@@ -45,6 +48,9 @@ Ball::Ball(Board& board, Player1& player1, Player2& player2) {
 	limitRight = anchorPointBottomRight.x - radius;
 }
 
+// input: void
+// output: void
+// usage: draw Ball instance
 void Ball::drawBall() {
 	// set ball color
 	setcolor(WHITE);
@@ -54,6 +60,9 @@ void Ball::drawBall() {
 	pieslice(position.x, position.y, 0, 360, radius);
 }
 
+// input: void
+// output: void
+// usage: change Ball position.x, position.y
 void Ball::move() {
 	if (position.x > 0) {
 		position.x += (int)ceil(vec.x * speed);
@@ -72,9 +81,10 @@ void Ball::move() {
 
 // input: board, player1, player2
 // output: 1 if collision with player, 2 if collision with board, 0 if no collision
+// usage: to process the collision effect of the Ball with Board and Player
 int Ball::hasCollision(const Board& board, Player1& player1, Player2& player2) {
 	// heightPlayerInerval is an interval between the coordination of the top to the bottom of the player
-	// if position.x of the ball to the limit edge is smaller than 3 pixel than bounce the ball back
+	// if position.x of the ball to the limit edge is smaller than 1 pixel than bounce the ball back
 	int compareParamForBallX = (int)floor(vec.x * speed);
 	int compareParamForBallY = (int)floor(vec.y * speed);
 	if ((position.x - limitLeft) <= 1) {
@@ -117,27 +127,33 @@ int Ball::hasCollision(const Board& board, Player1& player1, Player2& player2) {
 	return 0;
 }
 
+// input: void
+// output: void
+// usage: change the y coordination of the moving vector when collide with Board
 void Ball::collisionBoard() {
 	if (vec.y > 0) {
-		this->position.y -= 2;
+		this->position.y -= 5;
 	}
 	else if (vec.y < 0) {
-		this->position.y += 2;
+		this->position.y += 5;
 	}
 
 	vec.y = -vec.y;
 }
 
+// input: void
+// output: void
+// usage: change the x, y coordination of the moving vector when collide with Player
 void Ball::collisionPlayer() {
 	Random* r = Random::getInstance();
 	
 	if (vec.x > 0) {
 		vec.x = -(r->getRandomVal(5, 9) / 10.0);
-		this->position.x -= 2;
+		this->position.x -= 5;
 	}
 	else if (vec.x < 0) {
 		vec.x = (r->getRandomVal(5, 9) / 10.0);
-		this->position.x += 2;
+		this->position.x += 5;
 	}
 
 	if (vec.y < 0) {
@@ -150,6 +166,9 @@ void Ball::collisionPlayer() {
 	}
 }
 
+// input: const Board& 
+// output: void
+// usage: return the Ball to the first state, when it is at the middle of the Board
 void Ball::resetState(const Board& board) {
 	Random* r = Random::getInstance();
 	

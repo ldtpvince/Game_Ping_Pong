@@ -12,7 +12,7 @@ class gameWindow
 	Player1 player1;
 	Player2 player2;
 	Ball ball;
-	const int scoreWiner = 1;//Score of Winner
+	const int scoreWiner = 5;//Score of Winner
 	bool exitFlag;
 public:
 	gameWindow();
