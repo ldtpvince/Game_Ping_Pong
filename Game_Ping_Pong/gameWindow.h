@@ -24,10 +24,6 @@ public:
 	void pauseGame();
 	int winner();
 	void drawResult(int);
-
-	// test using thread
-	/*void testPlayer1();
-	void testPlayer2();*/
 };
 
 

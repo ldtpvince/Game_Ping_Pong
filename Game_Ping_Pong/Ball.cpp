@@ -85,8 +85,6 @@ void Ball::move() {
 int Ball::hasCollision(const Board& board, Player1& player1, Player2& player2) {
 	// heightPlayerInerval is an interval between the coordination of the top to the bottom of the player
 	// if position.x of the ball to the limit edge is smaller than 1 pixel than bounce the ball back
-	int compareParamForBallX = (int)floor(vec.x * speed);
-	int compareParamForBallY = (int)floor(vec.y * speed);
 	if ((position.x - limitLeft) <= 1) {
 		int heightPlayerInterval = player1.getY() + Player::height;
 		if (position.y >= player1.getY() && position.y <= heightPlayerInterval) {

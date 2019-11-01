@@ -3,23 +3,7 @@
 
 gameWindow::gameWindow() :board(600, 400), ball(board, player1, player2), player1(board), player2(board), exitFlag(false) {}
 
-// test using thread => doesnt work
-//void gameWindow::testPlayer1() {
-//	if (GetAsyncKeyState(0x57)) player1.moveUP();//if discover key 'w' pressed , player1 will move up
-//	if (GetAsyncKeyState(0x53)) player1.moveDown();//if discover key 's' pressed , player1 will move down
-//}
-//
-//void gameWindow::testPlayer2() {
-//	if (GetAsyncKeyState(VK_UP)) player2.moveUP();//if discover key UP pressed , player2 will move up
-//	if (GetAsyncKeyState(VK_DOWN)) player2.moveDown();//if discover key DOWN pressed , player2 will move down
-//}
-
 void gameWindow::runGame() {
-	/*thread test1(&gameWindow::testPlayer1, this);
-	thread test2(&gameWindow::testPlayer2, this);
-	test1.join();
-	test2.join();*/
-
 	drawTitle();//draw title
 	drawInstruction();//draw instruction
 	while (1) {
@@ -48,7 +32,6 @@ void gameWindow::runGame() {
 				if (GetAsyncKeyState(0x52))//press key 'r' to resume game
 					break;
 			}
-
 		}
 
 		int Winner = winner();//find whether there is winner
